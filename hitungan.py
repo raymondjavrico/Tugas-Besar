@@ -80,10 +80,15 @@ while gewees:
         else:
             print("Thanks for using TempDec ^_^")
             gewees = False
+    # Bagian B = 2-5 kalian isi langsung sesuai pembagian tugasnya ya gais, jadi 
+    # 2 = Temperature Detector
+    # 3 = Scan QR Code
+    # 4 = Diary Perjalanan
+    # 5 = Pendaftaran Vaksin 
+    elif B == 2: 
+    elif B == 3:
+    elif B == 4:
     elif B == 5:
-        c = input("Apakah kamu ingin mendaftar vaksin? (y/n): ")
-        if c == "y" or c == "Y":
-            nama = input("Masukkan nama: ")
 
 
 # ntar diganti aja jadi table
