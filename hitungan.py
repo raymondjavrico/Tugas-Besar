@@ -61,23 +61,24 @@ if repeat:
     print("", items)
     for i in range(len(items)+2):
         print("=", end="")
-    print("\n")
     gewees = True
 while gewees:
+    print()
     for e in range(len(arrey)):
         print(str(e+1) + ". " + arrey[e])
-    B = int(input("Choose one of the above: "))
+    B = int(input("\nChoose one of the above: "))
     if B == 1:
-        info = "Bla bla bla fafifu was wes wos pokoknya ini informasi penting banget jadi tempdec ini itu \n" \
+        info = "\nBla bla bla fafifu was wes wos pokoknya ini informasi penting banget jadi tempdec ini itu \n" \
             "seperti semacam aplikasi dimana kamu bisa .... dan bisa ngecek temperatur juga tapi di sini cuma \n" \
             "kurang lebih simulasi doang ga ngecek beneran, terus bisa scan QR code juga untuk mengetahui apakah" \
             "kita bisa masuk ke suatu tempat atau tidak. Ada juga diary perjalanan untuk mengetahui tempat \n" \
             "apa saja yang sudah kita kunjungi, dan terdapat juga pendaftaran vaksin."
         print(info)
-        back = input("Do you want to go back? (y/n): ")
+        back = input("\nDo you want to go back? (y/n): ")
         if back == "y" or back == "Y":
             gewees = True
         else:
+            print("Thanks for using TempDec ^_^")
             gewees = False
     elif B == 5:
         c = input("Apakah kamu ingin mendaftar vaksin? (y/n): ")
