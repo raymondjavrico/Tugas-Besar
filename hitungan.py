@@ -1,4 +1,3 @@
-
 # WELCOME TO TEMPDEC
 
 # bagian 1 (login & register)
@@ -65,19 +64,18 @@ if repeat:
     arrey = ["Info Penting", "Pendaftaran Vaksin", "Scan QR Code", "Diary Perjalanan", "Paspor Digital"]
     for e in range(len(arrey)):
         print(str(e+1) + ". " + arrey[e])
-    B = input("Choose one: ")
+    B = int(input("Choose one of the above: "))
     if B == 1:
-        info = "Bla bla bla fafifu was wes wos pokoknya ini informasi penting banget jadi tempdec ini itu " \
-           " seperti semacam aplikasi dimana kamu bisa .... dan bisa ngecek temperatur juga tapi di sini cuma kurang lebih " \
-           "simulasi doang ga ngecek beneran, terus bisa scan qr code juga untuk mengetahui apakah kita bisa masuk ke suatu " \
-           "tempat atau tidak kurang lebih kayak gitu sih sistemnya. Sama ada paspor digital untuk mengetahui apakah kita udah " \
-           "vaksin apa belum sm ada pendaftarannya juga, terus diary perjalanan juga ada."
+        info = "Bla bla bla fafifu was wes wos pokoknya ini informasi penting banget jadi tempdec ini itu \n " \
+               "seperti semacam aplikasi dimana kamu bisa .... dan bisa ngecek temperatur juga tapi di sini cuma kurang lebih \n " \
+               "simulasi doang ga ngecek beneran, terus bisa scan qr code juga untuk mengetahui apakah kita bisa masuk ke suatu \n " \
+               "tempat atau tidak kurang lebih kayak gitu sih sistemnya. Sama ada paspor digital untuk mengetahui apakah kita udah \n" \
+               "vaksin apa belum sm ada pendaftarannya juga, terus diary perjalanan juga ada."
         print(info)
     elif B == 2:
         c = input("Apakah kamu ingin mendaftar vaksin? (y/n): ")
         if c == "y" or c == "Y":
             nama = input("Masukkan nama: ")
-
 
 
 # ntar diganti aja jadi table
