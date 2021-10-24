@@ -16,7 +16,7 @@ repeat = True
 m = input("\n" + "TempDec wants to ask for access to your location, files, and camera (click ok to continue): ")
 if m == "ok" or m == "Ok" or m == "OK" or m == "oK":
     name = input("Please enter your username      : ")
-    phone = int(input("Please enter your phone number  : "))
+    phone = input("Please enter your phone number  : "))
     email = input("Please enter your email         : ")
     print("Hello, " + name + "!" + " we have sent a code to your device, please insert the code to continue! ")
 else:
