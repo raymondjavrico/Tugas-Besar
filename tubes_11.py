@@ -2,8 +2,9 @@
 
 # bagian 1 (login & register)
 
-# karena alasan perbatasan kita batasin sistem programnya jadi sekali jalan alias ga ngeloop semuanya dari awal sampe
-# akhir
+# Infinity loop (ga akan pernah selesai) 
+# pros: program lebih detail, bisa log in ke username yg udh diregister sblmmya atau switch account (register dgn alamat email, no telp & username baru)
+# cons: bikin flowchart & pseudocodenya ribet 
 
 from random import randint
 arr_name = ["empty"]
