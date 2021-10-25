@@ -79,9 +79,11 @@ while result:
                 repeat = True
             else:
                 print("Please click ok to continue.")
+                ngulang = False
                 daiya = False
         else:
             print("Please click ok to continue.")
+            ngulang = False
             daiya = False
 
     while daiya:
