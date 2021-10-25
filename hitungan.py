@@ -2,6 +2,9 @@
 
 # bagian 1 (login & register)
 
+# biar flowchartnya ga terlalu ribet sistem programnya dibikin sekali jalan alias ga ngeloop semuanya dari awal sampe
+# akhir, (tidak nyimpen data user yg sdh diinput sebelumnya, ga perlu bikin array buat nyimpen username, no, telp, email, & pass)
+
 from random import randint
 
 welcome = "Welcome to TempDec!"
