@@ -4,7 +4,7 @@
 
 # Infinity loop (ga akan pernah selesai) 
 # pros: program lebih detail (memudahkan user), bisa log in ke username yg udh diregister sblmmya/switch account (register dgn alamat email, no telp & username baru)
-# cons: bikin flowchart & pseudocodenya ribet 
+# cons: bikin flowchart & pseudocodenya ribet
 
 from random import randint
 arr_name = ["empty"]
@@ -85,6 +85,8 @@ while result:
             print("Please click ok to continue.")
             ngulang = False
             daiya = False
+    else:
+        print("Invalid input. Please enter either y/n.\n")
 
     while daiya:
         gewees = True
@@ -104,12 +106,10 @@ while result:
             attempt += 1
             if attempt == 3:
                 print("You lose attempts, please try again later.\n")
-                attempt = 0 
+                attempt = 0
                 gewees = False
                 ngulang = False
                 daiya = False
-
-# aslinya sebelum ini ada hiasan dikit gitu, nama no. telp & email di border tapi nanti aja lah
 
     arr = []
     while repeat:
@@ -132,7 +132,6 @@ while result:
                 result = False
         else:
             print("Please enter the latest code.")
-
 
 # bagian 2 (dalam aplikasi)
 
