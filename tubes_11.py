@@ -178,6 +178,7 @@ while result:
             print("QR Code")
         elif B == 4:
             print("Diary Perjalanan")
+            print("Belum ada data terkait riwayat lokasi perjalanan Anda")
         elif B == 5:
             print("Pendaftaran Vaksin")
         else:
