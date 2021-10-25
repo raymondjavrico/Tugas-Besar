@@ -2,7 +2,8 @@
 
 # bagian 1 (login & register)
 
-# infinity loop, program memungkinkan user untuk log in ke username yg sudah dipilih, atau register dengan email, no.telp dan username baru 
+# program ga dibatasi alias bakal jalan terus (infinity loop), memungkinkan user utk login ke account yang sudah masuk dalam program
+# atau register dengan akun baru 
 
 from random import randint
 arr_name = ["empty"]
@@ -48,7 +49,7 @@ while result:
                         satu = False
                         daiya = False
                 while not satu:
-                    phone = int(input("Please enter your phone number  : "))
+                    phone = input("Please enter your phone number  : ")
                     daiya = True
                     for element in arr_phone:
                         if element == phone:
