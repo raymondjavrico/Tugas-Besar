@@ -3,8 +3,7 @@
 
 # bagian 1 (login & register)
 
-# karena alasan perbatasan kita batasin sistem programnya jadi sekali jalan alias ga ngeloop semuanya dari awal sampe
-# akhir
+# infinity loop, program memungkinkan user untuk log in ke username yg sudah dipilih, atau register dengan email, no.telp dan username baru 
 
 from random import randint
 arr_name = ["empty"]
@@ -180,14 +179,3 @@ while result:
             print("Pendaftaran Vaksin")
         else:
             print("invalid input. Please enter only 1-5.")
-
-# ntar diganti aja jadi table
-
-# 1.Do you want to install this application? (Yes/No)
-# 2.Bakal minta akses ke lokasi, penyimpanan, dan kamera
-# 3.Registrasi (input No. Hp & email)
-# 4.Random randint buat nomor OTP
-# 5.Tekan kolom Saya menerima isi syarat penggunaan dan kebijakan privasi
-# 6.“Selamat anda berhasil masuk”
-# 7.Ntar ada array isinya ‘Pendaftaran Vaksin’, ‘Scan QR Code’, ‘Teledokter’, ‘Info Penting’, ‘Diary Perjalanan’, dan ‘Paspor Digital’. (boleh diilangin beberapa)
-# 8. Pilih salah satu dr itu, next
