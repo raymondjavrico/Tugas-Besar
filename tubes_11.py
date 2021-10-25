@@ -2,8 +2,8 @@
 
 # bagian 1 (login & register)
 
-# program ga dibatasi alias bakal jalan terus (infinity loop), memungkinkan user utk login ke account yang sudah masuk dalam program
-# atau register dengan akun baru 
+# karena alasan perbatasan kita batasin sistem programnya jadi sekali jalan alias ga ngeloop semuanya dari awal sampe
+# akhir
 
 from random import randint
 arr_name = ["empty"]
@@ -92,7 +92,7 @@ while result:
                 valid = "Valid Username! Welcome, " + name
                 ngulang = True
         for m in arr_password:
-            if m == password:
+            if m == password and ngulang:
                 print(valid)
                 gewees = False
                 daiya = False
