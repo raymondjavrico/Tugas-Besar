@@ -102,6 +102,7 @@ while result:
             attempt += 1
             if attempt == 3:
                 print("You lose attempts, please try again later.\n")
+                attempt = 0 
                 gewees = False
                 repeat = False
                 ngulang = False
