@@ -104,7 +104,6 @@ while result:
                 print("You lose attempts, please try again later.\n")
                 attempt = 0 
                 gewees = False
-                repeat = False
                 ngulang = False
                 daiya = False
 
