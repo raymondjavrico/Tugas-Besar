@@ -32,10 +32,10 @@ while result:
     if acc == "y" or acc == "Y":
         daiya = True
     elif acc == "n" or acc == "N":
-        dar = input("Please sign in to use the application! (click ok to continue): ")
-        if dar == "ok" or dar == "Ok" or dar == "OK" or dar == "oK":
-            m = input("TempDec wants to ask for access to your location, files, and camera (click ok to continue): ")
-            if m == "ok" or m == "Ok" or m == "OK" or m == "oK":
+        dar = input("Please sign in to use the application! (click ok to continue): ").lower()
+        if dar == "ok":
+            m = input("TempDec wants to ask for access to your location, files, and camera (click ok to continue): ").lower()
+            if m == "ok":
                 while satu:
                     email = input("Please enter your email         : ")
                     daiya = True
