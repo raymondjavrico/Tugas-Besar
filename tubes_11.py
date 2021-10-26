@@ -141,7 +141,7 @@ def menu_2():
                 print("Anda diperbolehkan masuk")
                 rata = sum(arr)/(len(arr))
                 result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower()
-            result != "n"
+
 def menu_3():
     print("QR Code")
 
@@ -170,9 +170,9 @@ def main_menu(logged):
         print(str(e+1) + ". " + arr_menu[e])
     print()
     print()
-    y = input("Tekan Q Jika ingin keluar")
+    y = input("Tekan Q Jika ingin keluar: ")
     if y == "Q" or "q":
-        z = input("Tekan Q sekali lagi jika ingin keluar")
+        z = input("Tekan Q sekali lagi jika ingin keluar: ")
         if z == "Q" or "q":
             logged = False
             print("Thanks for using TempDec ^_^\n")
