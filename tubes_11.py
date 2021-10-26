@@ -208,7 +208,7 @@ while app:
         logged = regis_main(logged)
     while logged:
         logged = main_menu(logged)
-    y = input("Exit? (y/n)  :")
+    y = input("Do you want to exit? Your process will not be saved (y/n)  :")
     if y == "y":
         exit()
 
