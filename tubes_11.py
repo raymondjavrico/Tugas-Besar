@@ -131,16 +131,17 @@ def menu_2():
     arr = []
     while result:
         suhu = int(input("Masukkan suhu: "))
-            if (suhu > 37):
-                arr.append(suhu)
-                print("Anda tidak diperbolehkan masuk")
-                rata = sum(arr)/(len(arr))
-                result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower() 
-            elif (suhu <= 37):
-                arr.append(suhu)
-                print("Anda diperbolehkan masuk")
-                rata = sum(arr)/(len(arr))
-                result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower()
+        if (suhu > 37):
+            arr.append(suhu)
+            print("Anda tidak diperbolehkan masuk")
+            rata = sum(arr)/(len(arr))
+            result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower() 
+        elif (suhu <= 37):
+            arr.append(suhu)
+            print("Anda diperbolehkan masuk")
+            rata = sum(arr)/(len(arr))
+            result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower()
+        result != "n"
 
 def menu_3():
     print("QR Code")
