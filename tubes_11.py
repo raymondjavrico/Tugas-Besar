@@ -1,22 +1,32 @@
 # WELCOME TO TEMPDEC
 
-# bagian 1 (login & register)
-
-# Infinity loop (ga akan pernah selesai) 
-# pros: program lebih detail (memudahkan user), bisa log in ke username yg udh diregister sblmmya/switch account (register dgn alamat email, no telp & username baru)
-# cons: bikin flowchart & pseudocodenya ribet
-
-from random import randint
-
 #Bacanya dari paling bawah
+from random import randint
 
 logged=False
 app = True
 arr_name = ["empty"]
 arr_email = ["empty"]
+arr_suhu = [0]
 arr_phone = [0]
 arr_password = ["empty"]
-welcome = "Welcome to TempDec!"
+
+def title_screen(title):
+    for e in range(len(title)+2):
+        print("=", end="")
+    print()
+    print("", title)
+    for e in range(len(title)+2):
+        print("=", end="")
+    print()
+    return #balek ke apapun yang butuh title screen
+
+def back():
+    loop = False
+    print("\nDo you want to go back? (y/n)")
+    while not loop:
+        loop = "y" in input().lower()
+    return #balek ke apapun yang butuh back
 
 def regis_email():
     loop =True
@@ -31,7 +41,7 @@ def regis_email():
         if confirm:
             arr_email.append(email)
             loop = False
-    return 
+    return #balek ke regis_main()
             
 def regis_phone():
     loop =True
@@ -46,7 +56,7 @@ def regis_phone():
         if confirm:
             arr_phone.append(phone)
             loop = False
-    return 
+    return #balek ke regis_main()
 
 def regis_username():
     loop = True
@@ -63,11 +73,10 @@ def regis_username():
             loop = False
     password = input("Please enter your password      : ")
     arr_password.append(password)
-    return 
+    return #balek ke regis_main()
 
 def regis_otp():
     arr_otp = []
-    confirm=True
     loop=True
     while loop:
         otp = randint(100, 1000)
@@ -77,16 +86,22 @@ def regis_otp():
     while loop:
         code = int(input("Insert the code you have received: "))
         if code == arr_otp[len(arr_otp)-1]:
-            memo = input("I accept the privacy and policy terms of this application (y/n): ")
-            while confirm:
-                if memo == "y" or "yes" or "oke" or "ok":
-                    print("Congratulations! You have succesfully signed in to TempDec ^_^")
-                    loop=False
-                    confirm=False
-                else:
-                    print("You must agree to the privacy and policy terms of this application to continue using this app.")
+            loop = False
         else:
             print("Please enter the latest code.")
+    return            
+
+def regis_agree():
+    loop = True
+    while loop:
+        loop = ("y" or "yes" or "ok" or "oke") in input("I accept the privacy and policy terms of this application (y/n): ").lower()
+        if loop == True:
+            print("Congratulations! You have succesfully signed in to TempDec ^_^")
+            loop = False
+        else:
+            print("You must agree to the privacy and policy terms of this application to continue using this app.")
+            loop = True
+    return
 
 #########################################################################################################################################
 def regis_main(logged):
@@ -98,8 +113,9 @@ def regis_main(logged):
             regis_phone()
             regis_username()
             regis_otp()
+            regis_agree()
             logged=True
-            return logged
+            return logged #balik ke main()
 #########################################################################################################################################
 def login_main(logged):
     global arr_name, arr_password
@@ -115,102 +131,110 @@ def login_main(logged):
                 if password == arr_password[i]:
                     loop = False
                     logged = True
-                    return logged
+                    return logged #balik ke main()
         n-=1
         print(f"Invalid Password or Username! Try another one. ({n} more attempt)")
         if n==0:
             print("You lose attempts, please try again later.\n")
-            return logged
+            return logged #balik ke main()
 #########################################################################################################################################
 
 def menu_1():
-    print("Info Penting")
+    title_screen("Info penting")
+    info = "\nBla bla bla fafifu was wes wos pokoknya ini informasi penting banget jadi tempdec ini itu \n" \
+                "seperti semacam aplikasi dimana kamu bisa .... dan bisa ngecek temperatur juga tapi di sini cuma \n" \
+                "kurang lebih simulasi doang ga ngecek beneran, terus bisa scan QR code juga untuk mengetahui apakah \n" \
+                "kita bisa masuk ke suatu tempat atau tidak. Ada juga diary perjalanan untuk mengetahui tempat \n" \
+                "apa saja yang sudah kita kunjungi, dan terdapat juga pendaftaran vaksin."
+    print(info)
+    back()
+    return #balik ke main_menu()
 
 def menu_2():
-    print("Temperature Detector")
-    arr = []
-    while result:
-        suhu = int(input("Masukkan suhu: "))
+    arr_suhu=[]
+    loop = True
+    title_screen("Temperature Detector")
+    while loop:
+        suhu = int(input("\nMasukkan suhu: "))
         if (suhu > 37):
-            arr.append(suhu)
+            arr_suhu.append(suhu)
             print("Anda tidak diperbolehkan masuk")
-            rata = sum(arr)/(len(arr))
-            result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower() 
+            rata = sum(arr_suhu)/(len(arr_suhu))
+            loop = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower() 
         elif (suhu <= 37):
-            arr.append(suhu)
+            arr_suhu.append(suhu)
             print("Anda diperbolehkan masuk")
-            rata = sum(arr)/(len(arr))
-            result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower()
-        result != "n"
+            rata = sum(arr_suhu)/(len(arr_suhu))
+            loop = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower()
+    return #balik ke main_menu()
 
 def menu_3():
-    print("QR Code")
+    title_screen("QR Code")
+    back()
+    return #balik ke main_menu()
 
 def menu_4():
-    print("Diary Perjalanan")
+    title_screen("Diary Perjalanan")
+    back()
+    return #balik ke main_menu()
 
 def menu_5():
-    print("Pendaftaran Vaksin")
+    title_screen("Pendaftaran Vaksin")
+    back()
+    return #balik ke main_menu()
 
 def menu_invalid():
     print("invalid input. Please enter only 1-5")   
+    back()
+    return #balik ke main_menu()
 
 #########################################################################################################################################
 def main_menu(logged):
-    arr_menu = ["Info Penting", "Temperature Detector", "Scan QR Code", "Diary Perjalanan", "Pendaftaran Vaksin"]
-    print()
-    items = "list of available functions "
-    for e in range(len(items)+2):
-        print("=", end="")
-    print()
-    print("", items)
-    for e in range(len(items)+2):
-        print("=", end="")
-    print()
-    for e in range(len(arr_menu)):
-        print(str(e+1) + ". " + arr_menu[e])
-    print()
-    print()
-    y = input("Tekan Q Jika ingin keluar: ")
-    if y == "Q" or "q":
-        z = input("Tekan Q sekali lagi jika ingin keluar: ")
-        if z == "Q" or "q":
-            logged = False
-            print("Thanks for using TempDec ^_^\n")
-            return logged
-    
-    B = int(input("\nChoose one of the above: "))
-    if B == 1:
-        menu_1()
-    elif B == 2:
-        menu_2()
-    elif B == 3:
-        menu_3()
-    elif B == 4:
-        menu_4()
-    elif B == 5:
-        menu_5()
-    else:
-        menu_invalid()
-
+    logged_menu = True
+    while logged_menu: 
+        arr_menu = ["Info Penting", "Temperature Detector", "Scan QR Code", "Diary Perjalanan", "Pendaftaran Vaksin"]
+        print()
+        items="List of available function"
+        title_screen(items)
+        print()
+        for e in range(len(arr_menu)):
+            print(str(e+1) + ". " + arr_menu[e])
+        print("0. exit")
+        B = int(input("\nPilih salah satu dari nomor di atas: "))
+        if B == 0:
+            z = input("Tekan 0 sekali lagi jika ingin sign out")
+            if z == 0:
+                logged = False
+                logged_menu = False
+                print("Thanks for using TempDec ^_^\n")
+                return logged #balik ke main()
+        elif B == 1:
+            menu_1()
+        elif B == 2:
+            menu_2()
+        elif B == 3:
+            menu_3()
+        elif B == 4:
+            menu_4()
+        elif B == 5:
+            menu_5()
+        else:
+            menu_invalid()
 #########################################################################################################################################
-
-while app:
-    for e in range(len(welcome)+2):
-        print("=", end="")
-    print()
-    print("", welcome)
-    for i in range(len(welcome)+2):
-        print("=", end="")
-    acc = input("\nAlready have an account? log in to continue! (y/n): ")
-    if acc == "y" or acc == "Y":
-        logged = login_main(logged)
-    elif acc == "n" or acc == "N":
-        logged = regis_main(logged)
-    while logged:
-        logged = main_menu(logged)
-    y = input("Do you want to exit? Your process will not be saved (y/n)  :")
-    if y == "y":
-        exit()
-
+def main():
+    app = True
+    global logged
+    while app:
+        title_screen("Welcome to TempDec")
+        acc = input("\nAlready have an account? log in to continue! (y/n): ")
+        if acc == "y" or acc == "Y":
+            logged = login_main(logged)
+        elif acc == "n" or acc == "N":
+            logged = regis_main(logged)
+        while logged:
+            logged = main_menu(logged)
+        y = input("Do you want to exit? Your process will not be saved (y/n)  :")
+        if y == "y":
+            exit()
 #########################################################################################################################################
+main()
