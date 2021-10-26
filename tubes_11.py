@@ -168,6 +168,20 @@ while result:
                 gewees = False
     # Bagian B = 2-5 kalian isi langsung sesuai pembagian tugasnya ya gais, jadi
     # 2 = Temperature Detector
+    arr = []
+    while result:
+        suhu = int(input("Masukkan suhu: "))
+            if (suhu > 37):
+                arr.append(suhu)
+                print("Anda tidak diperbolehkan masuk")
+                rata = sum(arr)/(len(arr))
+                result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower() 
+            elif (suhu <= 37):
+                arr.append(suhu)
+                print("Anda diperbolehkan masuk")
+                rata = sum(arr)/(len(arr))
+                result = "y" in input("Rata-rata suhu anda:" + str(rata) + " input suhu lagi? (y/n): ").lower()
+            result != "n"
     # 3 = Scan QR Code
     # 4 = Diary Perjalanan
     # 5 = Pendaftaran Vaksin
