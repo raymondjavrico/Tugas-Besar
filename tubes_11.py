@@ -1,7 +1,7 @@
 # WELCOME TO TEMPDEC
 #Bacanya dari paling bawah
-from random import randint
 
+from random import randint
 logged=False
 app = True
 arr_name = ["empty"]
@@ -186,8 +186,8 @@ def menu_invalid():
     print("invalid input. Please enter only 1-5")   
     back()
     return #balik ke main_menu()
-
 #########################################################################################################################################
+
 def main_menu(logged):
     logged_menu = True
     while logged_menu: 
@@ -219,7 +219,9 @@ def main_menu(logged):
             menu_5()
         else:
             menu_invalid()
+
 #########################################################################################################################################
+
 def main():
     app = True
     global logged
@@ -235,5 +237,6 @@ def main():
         y = input("Do you want to exit? Your process will not be saved (y/n)  :")
         if y == "y":
             exit()
+
 #########################################################################################################################################
 main()
