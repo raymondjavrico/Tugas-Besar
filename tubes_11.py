@@ -12,6 +12,7 @@ arr_phone = [0]
 arr_password = ["empty"]
 
 def title_screen(title):
+    print()
     for e in range(len(title) + 2):
         print("=", end="")
     print()
