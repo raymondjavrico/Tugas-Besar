@@ -137,8 +137,8 @@ def login_main(logged):
     loop = True
     n = 5
     while loop:
-        name = input("Please enter your username       :")
-        password = input("Please enter your password    :")
+        name = input("Please enter your username       : ")
+        password = input("Please enter your password      : ")
         i = -1
         for e in arr_name:
             i += 1
