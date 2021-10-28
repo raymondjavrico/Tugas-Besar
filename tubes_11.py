@@ -174,14 +174,12 @@ def menu_2():
     while loop:
         suhu = int(input("\nMasukkan suhu: "))
         arr_suhu.append(suhu)
+        rata = sum(arr_suhu) / (len(arr_suhu))
         if (suhu > 37):
             print("Anda tidak diperbolehkan masuk")
-            rata = sum(arr_suhu) / (len(arr_suhu))
-            loop = "y" in input("Rata-rata suhu anda: " + str(rata) + " input suhu lagi? (y/n): ").lower()
         else:
             print("Anda diperbolehkan masuk")
-            rata = sum(arr_suhu) / (len(arr_suhu))
-            loop = "y" in input("Rata-rata suhu anda: " + str(rata) + " input suhu lagi? (y/n): ").lower()
+        loop = "y" in input("Rata-rata suhu anda: " + str(rata) + " input suhu lagi? (y/n): ").lower()
     return  # balik ke main_menu()
 
 
