@@ -36,7 +36,7 @@ def back():
 
 def regis_email():
     loop = True
-    global arr_email
+    global arr_email, email
     while loop:
         email = input("Please enter your email          : ")
         confirm = True
@@ -68,10 +68,10 @@ def regis_phone():
 
 def regis_username():
     loop = True
-    global arr_name, arr_password
+    global arr_name, arr_password, username
     while loop:
-        username = input("Please enter your username       : ")
         confirm = True
+        username = input("Please enter your username       : ")
         for element in arr_name:
             if element == username:
                 confirm = False
@@ -138,8 +138,8 @@ def login_main(logged):
     loop = True
     n = 5
     while loop:
-        name = input("Please enter your username       : ")
-        password = input("Please enter your password      : ")
+        name = input("Please enter your username       :")
+        password = input("Please enter your password       :")
         i = -1
         for e in arr_name:
             i += 1
@@ -181,11 +181,30 @@ def menu_2():
         else:
             print("Anda diperbolehkan masuk")
         loop = "y" in input("Rata-rata suhu anda: " + str(rata) + " input suhu lagi? (y/n): ").lower()
-    return  # balik ke main_menu()
+    return # balik ke main_menu()
+
 
 
 def menu_3():
     title_screen("QR Code")
+    global username, email
+    import qrcode
+    from datetime import datetime
+    location = input("Where do you want to check in?  :  ")
+    img = qrcode.make(f"Username: {username}\n"
+                      f"Email Address: {email}\n"
+                      f"Lokasi Check-In: {location}\n"
+                      f"Tanggal & Waktu Check-In: {datetime.now()}\n"
+                      f"Selamat, Anda berhasil Check-In ^_^")
+    img.save("random.png")
+
+    from pyzbar.pyzbar import decode
+    from PIL import Image
+    d = decode(Image.open("random.png"))
+    print(d[0].data.decode('ascii'))
+
+    with Image.open("random.png") as img:
+        img.show()
     back()
     return  # balik ke main_menu()
 
