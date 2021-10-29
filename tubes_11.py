@@ -227,6 +227,55 @@ def menu_4():
 
 def menu_5():
     title_screen("Pendaftaran Vaksin")
+    keterangan_vaksin = input(
+        'Keterangan vaksin: ')  # isi dengan belum vaksin atau sudah vaksin pertama atau sudah vaksin kedua
+    if keterangan_vaksin == 'belum vaksin' or keterangan_vaksin == 'sudah vaksin pertama':  # pendaftaran vaksin bisa dilakukan
+        # identitas diri
+        print('\nJika ingin divaksin, silakan isi data diri berikut \nIDENTITAS DIRI')
+        # masukkan data diri user
+        nama_lengkap = input('Nama lengkap: ')  # nama lengkap sesuai KTP
+        NIK = input('NIK: ')  # NIK adalah Nomor Induk Kependudukan
+        jenis_kelamin = ['laki-laki', 'perempuan']
+        indeks_jenis_kelamin = int(
+            input('Masukkan indeks jenis kelamin: '))  # indeks 0 (laki-laki) dan indeks 1 (perempuan)
+        print(f'Jenis kelamin: {jenis_kelamin[indeks_jenis_kelamin]}')
+        tanggal_lahir = input('Tanggal lahir: ')  # format tanggal lahir: 11/04/1995
+        usia = float(input('Usia: '))  # usia saat ini dalam tahun
+        nomor_HP = input('Nomor HP: ')
+        nomor_telepon_rumah = input('Nomor telepon rumah: ')
+        email = input('Email: ')
+
+        # alamat
+        print('\nALAMAT')
+        # masukan alamat user
+        alamat = input('Alamat: ')  # alamat berdasarkan KTP
+        alamat_sekarang = input('Alamat sekarang: ')
+
+        # jadwal vaksin
+        print('\nJADWAL VAKSIN')
+        # masukan jadwal vaksin dari user
+        tanggal_vaksin = input(
+            'Masukkan tanggal vaksin yang Anda inginkan: ')  # asumsikan tanggal yang di-input adalah benar # formatnya: 28 Oktober 2021
+        waktu_vaksin = ['09:00-11:00 WIB', '13:00-15:00 WIB', '16:00-18:00 WIB']
+        indeks_waktu = int(input('Masukkan indeks waktu: '))  # asumsikan hanya terdapat 3 waktu vaksin
+        # indeks 0 untuk 09:00-11:00 WIB
+        # indeks 1 untuk 13:00-15:00 WIB
+        # indeks 2 untuk 16:00-18:00 WIB
+        print(f'Waktu vaksin yang Anda pilih adalah {waktu_vaksin[indeks_waktu]}')
+        lokasi_vaksin = ['puskesmas', 'aula', 'rumah sakit']
+        indeks_lokasi = int(input('Masukkan indeks lokasi: '))  # asumsikan hanya terdapat 3 lokasi vaksin
+        # indeks 0 untuk puskesmas
+        # indeks 1 untuk aula
+        # indeks 2 untuk rumah sakit
+        print(f'Lokasi vaksin yang Anda pilih adalah {lokasi_vaksin[indeks_lokasi]}')
+
+        # output setelah selesai mengisi semua data
+        print('\nPendaftaran vaksin telah berhasil')
+
+    else:  # sudah vaksin kedua
+        print('\nAnda telah divaksin sebanyak dua kali dan tidak bisa mendaftar lagi')
+    back()
+    return  # balik ke main_menu()
     back()
     return  # balik ke main_menu()
 
