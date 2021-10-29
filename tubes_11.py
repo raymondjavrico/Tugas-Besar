@@ -10,6 +10,8 @@ arr_email = ["empty"]
 arr_suhu = []
 arr_phone = [0]
 arr_password = ["empty"]
+arr_location = []
+arr_datetime = []
 
 def title_screen(title):
     print()
@@ -187,17 +189,18 @@ def menu_2():
 
 def menu_3():
     title_screen("QR Code")
-    global username, email
+    global username, email, arr_location, arr_datetime
     import qrcode
     from datetime import datetime
-    location = input("Where do you want to check in?  :  ")
+    location = input("\nWhere do you want to check in?  :  ")
+    arr_location.append(location)
     img = qrcode.make(f"Username: {username}\n"
                       f"Email Address: {email}\n"
                       f"Lokasi Check-In: {location}\n"
                       f"Tanggal & Waktu Check-In: {datetime.now()}\n"
                       f"Selamat, Anda berhasil Check-In ^_^")
     img.save("random.png")
-
+    arr_datetime.append(str(datetime.now()))
     from pyzbar.pyzbar import decode
     from PIL import Image
     d = decode(Image.open("random.png"))
@@ -210,7 +213,14 @@ def menu_3():
 
 
 def menu_4():
+    global arr_location, arr_datetime
     title_screen("Diary Perjalanan")
+    if len(arr_location) > 0:
+        print("Lokasi dan Tanggal Check-In")
+        for e in range(len(arr_location)):
+            print("- " + arr_location[e] + ", " + (arr_datetime[e]))
+    else:
+        print("Belum Ada Data Terkait Riwayat Perjalanan Anda")
     back()
     return  # balik ke main_menu()
 
