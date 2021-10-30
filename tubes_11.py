@@ -161,11 +161,12 @@ def login_main(logged):
 
 def menu_1():
     title_screen("Info penting")
-    info = "\nBla bla bla fafifu was wes wos pokoknya ini informasi penting banget jadi tempdec ini itu \n" \
-           "seperti semacam aplikasi dimana kamu bisa .... dan bisa ngecek temperatur juga tapi di sini cuma \n" \
-           "kurang lebih simulasi doang ga ngecek beneran, terus bisa scan QR code juga untuk mengetahui apakah \n" \
-           "kita bisa masuk ke suatu tempat atau tidak. Ada juga diary perjalanan untuk mengetahui tempat \n" \
-           "apa saja yang sudah kita kunjungi, dan terdapat juga pendaftaran vaksin."
+    info = "\nTempDec adalah program yang dapat melakukan pendataan dan pelacakan untuk menghentikan penyebaran Coronavirus Disease (COVID-19).\n" \
+           "Adanya fitur temperature detector dapat menunjukkan apakah anda diperbolehkan masuk ke ruang publik atau tidak sesuai \n" \
+           "keadaan suhu tubuh anda saat itu dan anda dapat melihat suhu rata-rata tubuh anda dari beberapa pengecekan yang telah dilakukan sebelumnya.\n" \
+           "Fitur QR Code akan membantu untuk mendata dan mendapatkan informasi lokasi anda saat memasuki ruang publik.\n" \
+           "Terdapat fitur diary perjalanan yang dapat mengetahui tempat mana saja yang pernah dikunjungi sebelumnya." \
+           "Ada juga fitur pendaftaran vaksin yang dapat memudahkan dalam pendataan informasi dan jadwal pendaftaran vaksin yang dapat disesuaikan oleh pengguna TempDec."
     print(info)
     back()
     return  # balik ke main_menu()
