@@ -182,7 +182,7 @@ def menu_2():
             print("Anda tidak diperbolehkan masuk")
         else:
             print("Anda diperbolehkan masuk")
-        loop = "y" in input("Rata-rata suhu anda: " + str(rata) + " input suhu lagi? (y/n): ").lower()
+        loop = "y" in input("Rata-rata suhu pengunjung: " + str(rata) + " input suhu lagi? (y/n): ").lower()
     return # balik ke main_menu()
 
 
