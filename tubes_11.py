@@ -204,10 +204,11 @@ def menu_3():
     from pyzbar.pyzbar import decode
     from PIL import Image
     d = decode(Image.open("random.png"))
-    print(d[0].data.decode('ascii'))
-
+ 
     with Image.open("random.png") as img:
         img.show()
+        
+    print(d[0].data.decode('ascii'))
     back()
     return  # balik ke main_menu()
 
