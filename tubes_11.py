@@ -277,8 +277,6 @@ def menu_5():
         print('\nAnda telah divaksin sebanyak dua kali dan tidak bisa mendaftar lagi')
     back()
     return  # balik ke main_menu()
-    back()
-    return  # balik ke main_menu()
 
 
 def menu_invalid():
