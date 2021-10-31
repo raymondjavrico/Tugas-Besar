@@ -144,7 +144,7 @@ def login_main(logged):
         password = input("Please enter your password       :")
         i = -1
         for e in arr_name:
-            i += 1
+            e += 1
             if name == e:
                 if password == arr_password[i]:
                     loop = False
