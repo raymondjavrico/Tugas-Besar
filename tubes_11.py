@@ -77,7 +77,7 @@ def regis_phone():
     console = Console()
     global arr_phone
     while loop:
-        phone = int(input("Please enter your phone number   : "))
+        phone = input("Please enter your phone number   : ")
         confirm = True
         for element in arr_phone:
             if element == phone:
