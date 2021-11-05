@@ -1,8 +1,16 @@
 # WELCOME TO TEMPDEC
-#Bacanya dari paling bawah
+# Bacanya dari paling bawah
 
+from datetime import datetime
+from PIL import Image
+from pyzbar.pyzbar import decode
 from random import randint
-
+from rich.console import Console
+from rich.table import Table
+from rich.markdown import Markdown
+from rich.progress import track
+import qrcode
+import time
 logged = False
 app = True
 arr_name = ["empty"]
@@ -12,18 +20,28 @@ arr_phone = [0]
 arr_password = ["empty"]
 arr_location = []
 arr_datetime = []
-
-def title_screen(title):
-    print()
-    for e in range(len(title) + 2):
-        print("=", end="")
-    print()
-    print("", title)
-    for e in range(len(title) + 2):
-        print("=", end="")
-    print()
-    return  # balek ke apapun yang butuh title screen
-
+MARKDOWN1 = """
+# Welcome to TempDec
+"""
+MARKDOWN2 = """
+# Temperature Detector 
+"""
+MARKDOWN3 = """
+# QR Code 
+"""
+MARKDOWN5 = """
+# Pendaftaran Vaksin 
+"""
+MARKDOWN = """
+# Info Penting 
+"""
+MARKDOWN4 = """
+# Diary Perjalanan 
+## Belum ada Data Terkait Riwayat Perjalanan Anda
+"""
+MARKDOWN44 = """
+# Diary Perjalanan 
+"""
 
 def back():
     loop = False
@@ -37,6 +55,7 @@ def back():
 
 
 def regis_email():
+    console = Console()
     loop = True
     global arr_email, email
     while loop:
@@ -45,7 +64,8 @@ def regis_email():
         for element in arr_email:
             if element == email:
                 confirm = False
-                print("This email address has already been registered into another account. Please choose another one.")
+                console.print("[bold red]This email address has already been registered into another account. "
+                              "Please choose another one.[bold red]")
         if confirm:
             arr_email.append(email)
             loop = False
@@ -54,6 +74,7 @@ def regis_email():
 
 def regis_phone():
     loop = True
+    console = Console()
     global arr_phone
     while loop:
         phone = int(input("Please enter your phone number   : "))
@@ -61,7 +82,8 @@ def regis_phone():
         for element in arr_phone:
             if element == phone:
                 confirm = False
-                print("This phone number has already been registered into another account. Please choose another one.")
+                console.print("[bold red]This phone number has already been registered into another account. "
+                              "Please choose another one.[bold red]")
         if confirm:
             arr_phone.append(phone)
             loop = False
@@ -77,7 +99,8 @@ def regis_username():
         for element in arr_name:
             if element == username:
                 confirm = False
-                print("This username has already been taken. Please choose another one.")
+                console = Console()
+                console.print("[bold red] This username has already been taken. Please choose another one.[bold red]")
         if confirm:
             arr_name.append(username)
             loop = False
@@ -89,6 +112,7 @@ def regis_username():
 def regis_otp():
     arr_otp = []
     loop = True
+    console = Console()
     while loop:
         otp = randint(100, 1000)
         loop = ("y" or "yes") in input(
@@ -100,27 +124,28 @@ def regis_otp():
         if code == arr_otp[len(arr_otp) - 1]:
             loop = False
         else:
-            print("Please enter the latest code.")
+            console.print("Please enter the latest code.", style="italic cyan")
     return
 
 
 def regis_agree():
     loop = True
+    console = Console()
     while loop:
         loop = ("y" or "yes" or "ok" or "oke") in input(
             "I accept the privacy and policy terms of this application (y/n): ").lower()
         if loop:
-            print("Congratulations! You have succesfully signed in to TempDec ^_^")
+            console.print("[bold]Congratulations! You have successfully signed in to TempDec[/bold] :smiley:")
             loop = False
         else:
-            print("You must agree to the privacy and policy terms of this application to continue using this app.")
+            console.print("You must agree to the privacy and policy terms of this application to continue using this app.", style="italic cyan")
             loop = True
     return
 
 
 #########################################################################################################################################
 def regis_main(logged):
-    reg = input("Please register in to use the application! (click ok to continue): ").lower()
+    reg = input("Please register in to use the program! (click ok to continue): ").lower()
     if reg == "ok":
         m = input(
             "TempDec wants to ask for access to your location, files, and camera (click ok to continue): ").lower()
@@ -136,47 +161,57 @@ def regis_main(logged):
 
 #########################################################################################################################################
 def login_main(logged):
-    global arr_name, arr_password
+    global arr_name, arr_password, arr_location, arr_datetime, arr_suhu
     loop = True
     n = 5
+    console = Console()
     while loop:
-        name = input("Please enter your username       :")
-        password = input("Please enter your password       :")
+        name = input("Please enter your username       : ")
+        password = input("Please enter your password       : ")
         i = -1
-        for e in arr_name:
-            e += 1
-            if name == e:
+        for e in range(len(arr_name)):
+            i += 1
+            if name == arr_name[e]:
+                if e != (len(arr_name)-1):
+                    arr_location = []
+                    arr_datetime = []
+                    arr_suhu = []
                 if password == arr_password[i]:
                     loop = False
                     logged = True
                     return logged  # balik ke main()
         n -= 1
-        print(f"Invalid Password or Username! Try another one. ({n} more attempt)")
+        console.print(f"[bold]Invalid Password [italic]or[/italic] Username! Try another one. [red]({n} more attempt)")
         if n == 0:
-            print("You lose attempts, please try again later.\n")
+            console.print("[underline red bold]You [italic]lose[/] attempts[/], [bold]please try again later.\n")
             return logged  # balik ke main()
 
 
 #########################################################################################################################################
 
 def menu_1():
-    title_screen("Info penting")
-    info = "\nTempDec adalah program yang dapat melakukan pendataan dan pelacakan untuk menghentikan penyebaran Coronavirus Disease (COVID-19).\n" \
-           "Adanya fitur temperature detector dapat menunjukkan apakah anda diperbolehkan masuk ke ruang publik atau tidak sesuai \n" \
-           "keadaan suhu tubuh anda saat itu dan anda dapat melihat suhu rata-rata tubuh anda dari beberapa pengecekan yang telah dilakukan sebelumnya.\n" \
-           "Fitur QR Code akan membantu untuk mendata dan mendapatkan informasi lokasi anda saat memasuki ruang publik.\n" \
-           "Terdapat fitur diary perjalanan yang dapat mengetahui tempat mana saja yang pernah dikunjungi sebelumnya." \
-           "Ada juga fitur pendaftaran vaksin yang dapat memudahkan dalam pendataan informasi dan jadwal pendaftaran vaksin yang dapat disesuaikan oleh pengguna TempDec."
-    print(info)
+    console = Console()
+    md = Markdown(MARKDOWN)
+    console.print(md)
+    info = "\nTempDec adalah program yang dapat melakukan pendataan dan pelacakan untuk menghentikan penyebaran Coronavirus Disease (COVID-19)." \
+           "Adanya fitur temperature detector dapat menunjukkan apakah anda diperbolehkan masuk ke ruang publik atau tidak sesuai " \
+           "keadaan suhu tubuh anda saat itu dan anda dapat melihat suhu rata-rata tubuh anda dari beberapa pengecekan yang telah dilakukan sebelumnya. " \
+           "Fitur QR Code akan membantu untuk mendata dan mendapatkan informasi lokasi anda saat memasuki ruang publik. " \
+           "Terdapat fitur diary perjalanan yang dapat mengetahui tempat mana saja yang pernah dikunjungi sebelumnya. " \
+           "Ada juga fitur pendaftaran vaksin yang dapat memudahkan dalam pendataan informasi dan jadwal pendaftaran vaksin yang" \
+           " dapat disesuaikan oleh pengguna TempDec."
+    console.print(info, justify="full")
     back()
     return  # balik ke main_menu()
 
 
 def menu_2():
     loop = True
-    title_screen("Temperature Detector")
+    console = Console()
+    md = Markdown(MARKDOWN2)
+    console.print(md)
     while loop:
-        suhu = int(input("\nMasukkan suhu: "))
+        suhu = float(input("\nMasukkan suhu: "))
         arr_suhu.append(suhu)
         rata = sum(arr_suhu) / (len(arr_suhu))
         if (suhu > 37):
@@ -184,15 +219,14 @@ def menu_2():
         else:
             print("Anda diperbolehkan masuk")
         loop = "y" in input("Rata-rata suhu anda: " + str(rata) + " input suhu lagi? (y/n): ").lower()
-    return # balik ke main_menu()
-
+    return  # balik ke main_menu()
 
 
 def menu_3():
-    title_screen("QR Code")
+    console = Console()
+    md = Markdown(MARKDOWN3)
+    console.print(md)
     global username, email, arr_location, arr_datetime
-    import qrcode
-    from datetime import datetime
     location = input("\nWhere do you want to check in?  :  ")
     arr_location.append(location)
     img = qrcode.make(f"Username: {username}\n"
@@ -202,35 +236,45 @@ def menu_3():
                       f"Selamat, Anda berhasil Check-In ^_^")
     img.save("random.png")
     arr_datetime.append(str(datetime.now()))
-    from pyzbar.pyzbar import decode
-    from PIL import Image
     d = decode(Image.open("random.png"))
- 
-    with Image.open("random.png") as img:
-        img.show()
-        
-    print(d[0].data.decode('ascii'))
+    for i in track(range(5), description="processing..."):
+        time.sleep(0.2)
+        if i == 4:
+            with Image.open("random.png") as img:
+                img.show()
+            print(d[0].data.decode('ascii'))
     back()
     return  # balik ke main_menu()
 
 
 def menu_4():
     global arr_location, arr_datetime
-    title_screen("Diary Perjalanan")
+    console = Console()
+    table = Table(title="", style="cyan")
+    table.add_column("Lokasi Check-In", style="aquamarine1", justify="center")
+    table.add_column("Tanggal & Waktu Check-In", style="magenta")
+    repeat = False
     if len(arr_location) > 0:
-        print("Lokasi dan Tanggal Check-In")
+        md = Markdown(MARKDOWN44)
+        console.print(md)
         for e in range(len(arr_location)):
-            print("- " + arr_location[e] + ", " + (arr_datetime[e]))
+            table.add_row(f"{arr_location[e]}", f"{arr_datetime[e]}")
+            repeat = True
     else:
-        print("Belum Ada Data Terkait Riwayat Perjalanan Anda")
+        md = Markdown(MARKDOWN4)
+        console.print(md)
+    if repeat:
+        console.print(table)
     back()
     return  # balik ke main_menu()
 
 
 def menu_5():
-    title_screen("Pendaftaran Vaksin")
+    console = Console()
+    md = Markdown(MARKDOWN5)
+    console.print(md)
     keterangan_vaksin = input(
-        'Keterangan vaksin: ')  # isi dengan belum vaksin atau sudah vaksin pertama atau sudah vaksin kedua
+        'Keterangan vaksin: ').lower()  # isi dengan belum vaksin atau sudah vaksin pertama atau sudah vaksin kedua
     if keterangan_vaksin == 'belum vaksin' or keterangan_vaksin == 'sudah vaksin pertama':  # pendaftaran vaksin bisa dilakukan
         # identitas diri
         print('\nJika ingin divaksin, silakan isi data diri berikut \nIDENTITAS DIRI')
@@ -281,7 +325,7 @@ def menu_5():
 
 
 def menu_invalid():
-    print("invalid input. Please enter only 1-5")
+    print("invalid input. Please enter only 0-5")
     back()
     return  # balik ke main_menu()
 
@@ -289,23 +333,30 @@ def menu_invalid():
 #########################################################################################################################################
 
 def main_menu(logged):
+    global arr_suhu, arr_location
     logged_menu = True
     while logged_menu:
-        arr_menu = ["Info Penting", "Temperature Detector", "Scan QR Code", "Diary Perjalanan", "Pendaftaran Vaksin"]
         print()
-        items = "List of available function"
-        title_screen(items)
-        print()
+        console = Console()
+        table1 = Table(title="")
+        table1.add_column("", style="aquamarine1")
+        table1.add_column("Fitur yang Tersedia", style="cornsilk1", justify="left")
+        arr_menu = ["Info Penting", "Temperature Detector", "Scan QR Code", "Diary Perjalanan", "Pendaftaran Vaksin", "Exit"]
         for e in range(len(arr_menu)):
-            print(str(e + 1) + ". " + arr_menu[e])
-        print("0. exit")
+            if e == (len(arr_menu)-1):
+                table1.add_row(f'0', f"{arr_menu[e]}")
+                break
+            else:
+                table1.add_row(f"{e+1}", f"{arr_menu[e]}")
+        console.print(table1)
         B = int(input("\nPilih salah satu dari nomor di atas: "))
         if B == 0:
-            z = str(input("Tekan 0 sekali lagi jika ingin sign out: "))
+            z = str(input("Tekan 0 sekali lagi jika ingin sign out (Apabila switch account, data suhu dan lokasi anda "
+                          "tidak akan terekam saat kembali log in): "))
             if z == "0":
                 logged = False
                 logged_menu = False
-                print("Thanks for using TempDec ^_^\n")
+                console.print("Thanks for using TempDec :thumbs_up:\n")
                 return logged  # balik ke main()
         elif B == 1:
             menu_1()
@@ -325,17 +376,23 @@ def main_menu(logged):
 
 def main():
     app = True
-    global logged
+    global logged, arr_suhu, arr_location, arr_datetime
+    console = Console()
     while app:
-        title_screen("Welcome to TempDec")
+        print()
+        md = Markdown(MARKDOWN1)
+        console.print(md)
         acc = input("\nAlready have an account? log in to continue! (y/n): ")
         if acc == "y" or acc == "Y":
             logged = login_main(logged)
         elif acc == "n" or acc == "N":
+            arr_suhu = []
+            arr_datetime = []
+            arr_location = []
             logged = regis_main(logged)
         while logged:
             logged = main_menu(logged)
-        y = input("Do you want to exit? Your process will not be saved (y/n): ")
+        y = input("Do you want to exit? Exiting will terminate the program (y/n): ")
         if y == "y":
             exit()
 
