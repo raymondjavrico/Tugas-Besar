@@ -100,7 +100,7 @@ def regis_username():
             if element == username:
                 confirm = False
                 console = Console()
-                console.print("[bold red] This username has already been taken. Please choose another one.[bold red]")
+                console.print("[bold red]This username has already been taken. Please choose another one.[bold red]")
         if confirm:
             arr_name.append(username)
             loop = False
