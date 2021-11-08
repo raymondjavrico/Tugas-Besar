@@ -1,4 +1,5 @@
-# WELCOME TO TEMPDEC
+# TEMPERATURE DETECTOR (TEMPDEC)
+# sebelum run program ini, dianjurkan untuk pip install qrcode, pip install pyzbar, pip install pillow, dan pip install rich di terminal 
 # Bacanya dari paling bawah
 
 from datetime import datetime
@@ -59,7 +60,7 @@ def regis_email():
     loop = True
     global arr_email, email
     while loop:
-        email = input("Please enter your email          : ")
+        email = input("Please enter your email          : ").lower()
         confirm = True
         for element in arr_email:
             if element == email:
@@ -77,7 +78,7 @@ def regis_phone():
     console = Console()
     global arr_phone
     while loop:
-        phone = input("Please enter your phone number   : ")
+        phone = input("Please enter your phone number   : ").lower()
         confirm = True
         for element in arr_phone:
             if element == phone:
@@ -95,7 +96,7 @@ def regis_username():
     global arr_name, arr_password, username
     while loop:
         confirm = True
-        username = input("Please enter your username       : ")
+        username = input("Please enter your username       : ").lower()
         for element in arr_name:
             if element == username:
                 confirm = False
@@ -133,12 +134,12 @@ def regis_agree():
     console = Console()
     while loop:
         loop = ("y" or "yes" or "ok" or "oke") in input(
-            "I accept the privacy and policy terms of this application (y/n): ").lower()
+            "I have read and accepted the privacy and policy terms of this program (y/n): ").lower()
         if loop:
-            console.print("[bold]Congratulations! You have successfully signed in to TempDec[/bold] :smiley:")
+            console.print(f"[bold]Congratulations! You have successfully signed in to TempDec[/bold] :smiley:")
             loop = False
         else:
-            console.print("You must agree to the privacy and policy terms of this application to continue using this app.", style="italic cyan")
+            console.print("You must agree to the privacy and policy terms of this program to continue.", style="italic cyan")
             loop = True
     return
 
@@ -166,20 +167,19 @@ def login_main(logged):
     n = 5
     console = Console()
     while loop:
-        name = input("Please enter your username       : ")
-        password = input("Please enter your password       : ")
+        name = input("Please enter your username       : ").lower()
+        password = input("Please enter your password       : ").lower()
         i = -1
         for e in range(len(arr_name)):
             i += 1
-            if name == arr_name[e]:
+            if name == arr_name[e] and password == arr_password[e]:
                 if e != (len(arr_name)-1):
                     arr_location = []
                     arr_datetime = []
                     arr_suhu = []
-                if password == arr_password[i]:
-                    loop = False
-                    logged = True
-                    return logged  # balik ke main()
+                loop = False
+                logged = True
+                return logged  # balik ke main()
         n -= 1
         console.print(f"[bold]Invalid Password [italic]or[/italic] Username! Try another one. [red]({n} more attempt)")
         if n == 0:
@@ -215,9 +215,9 @@ def menu_2():
         arr_suhu.append(suhu)
         rata = sum(arr_suhu) / (len(arr_suhu))
         if (suhu > 37):
-            print("Anda tidak diperbolehkan masuk")
+            console.print("Anda tidak diperbolehkan masuk", style="bold red")
         else:
-            print("Anda diperbolehkan masuk")
+            console.print("Anda diperbolehkan masuk", style="italic cyan")
         loop = "y" in input("Rata-rata suhu anda: " + str(rata) + " input suhu lagi? (y/n): ").lower()
     return  # balik ke main_menu()
 
