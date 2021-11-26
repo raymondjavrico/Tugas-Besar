@@ -2,7 +2,10 @@ import pandas as pd
 import os
 df = pd.read_csv("earthquakes.csv")
 
+print("Jumlah baris pada tabel data adalah, ", end="")
 print(len(df))  # menampilkan jumlah baris pada tabel data
+
+print("Jumlah kolom pada tabel data adalah, ", end="")
 print(len(df.columns))  # menampilkan jumlah kolom pada tabel data
 
 print("Jumlah data: " + str(len(df)))  # menampilkan jumlah data
@@ -40,7 +43,7 @@ col_max2 = df["deaths"].max(axis=0)
 print("jumlah kematian terbanyak adalah, ", end="")
 print(int(col_max2))
 
+
 print("Nilai korelasi antara nilai skala richter dan jumlah kematian adalah " + str(df["richter"].corr(df["deaths"])))
 # nilai korelasi antara skala richter dan jumlah kematian mendekati 0 yang artinya tidak berhubungan atau
 # berhubungan tetapi kecil sekali
-
