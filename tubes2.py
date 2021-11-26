@@ -51,6 +51,13 @@ print(df["richter"].std())
 print("Standar deviasi kematian adalah, ", end="")
 print(df["deaths"].std())
 
+# rata-rata skala richter
+print("rata-rata skala richter adalah, ", end="")
+print(df["richter"].mean())
+
+# rata-rata kematian
+print("rata-rata kematian adalah, ", end="")
+print(df["deaths"].mean())
 
 print("Nilai korelasi antara nilai skala richter dan jumlah kematian adalah " + str(df["richter"].corr(df["deaths"])))
 # nilai korelasi antara skala richter dan jumlah kematian mendekati 0 yang artinya tidak berhubungan atau
