@@ -43,6 +43,14 @@ col_max2 = df["deaths"].max(axis=0)
 print("jumlah kematian terbanyak adalah, ", end="")
 print(int(col_max2))
 
+# standar deviasi richter
+print("Standar deviasi skala richter adalah, ", end="")
+print(df["richter"].std())
+
+# standar deviasi kematian
+print("Standar deviasi kematian adalah, ", end="")
+print(df["deaths"].std())
+
 
 print("Nilai korelasi antara nilai skala richter dan jumlah kematian adalah " + str(df["richter"].corr(df["deaths"])))
 # nilai korelasi antara skala richter dan jumlah kematian mendekati 0 yang artinya tidak berhubungan atau
