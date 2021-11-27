@@ -23,6 +23,9 @@ print('Ukuran file: ' + str(size) + ' bytes')  # menampilkan ukuran file dalam b
 # 6) region = kategorikal data, nominal
 # 7) deaths = kuantitatif data
 
+# sorting skala richter
+print(df.sort_values(["richter"], ascending=[1]))
+
 # nilai minimum skala richter
 col_min1 = df["richter"].min(axis=0)
 print("Nilai minimum skala richter adalah, ", end="")
@@ -32,6 +35,9 @@ print(col_min1)
 col_max1 = df["richter"].max(axis=0)
 print("Nilai maksimum skala richter adalah, ", end="")
 print(col_max1)
+
+# sorting kematian
+print(df.sort_values(["deaths"], ascending=[1]))
 
 # nilai minimum kematian
 col_min2 = df["deaths"].min(axis=0)
@@ -127,3 +133,4 @@ print(df["deaths"].value_counts(normalize=True))
 print("Nilai korelasi antara nilai skala richter dan jumlah kematian adalah " + str(df["richter"].corr(df["deaths"])))
 # nilai korelasi antara skala richter dan jumlah kematian mendekati 0 yang artinya tidak berhubungan atau
 # berhubungan tetapi kecil sekali
+
