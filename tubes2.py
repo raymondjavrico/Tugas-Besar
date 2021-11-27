@@ -59,6 +59,71 @@ print(df["richter"].mean())
 print("rata-rata kematian adalah, ", end="")
 print(df["deaths"].mean())
 
+# frekuensi richter
+print("tabel frekuensi richter adalah, ")
+print(df["richter"].value_counts())
+
+# persentase richter
+print("Persentase richter adalah, ")
+print(df["richter"].value_counts(normalize=True))
+
+
+# frekuensi tahun
+print("Tabel frekuensi tahun adalah, ")
+print(df["year"].value_counts())
+
+
+# persentase Tahun
+print("persentase tahun adalah, ")
+print(df["year"].value_counts(normalize=True))
+
+
+# frekuensi bulan
+print("Tabel frekuensi bulan adalah, ")
+print(df["month"].value_counts())
+
+
+# persentase bulan
+print("Persentase Bulan adalah, ")
+print(df["month"].value_counts(normalize=True))
+
+
+# frekuensi hari
+print("Tabel frekuensi hari adalah, ")
+print(df["day"].value_counts())
+
+# persentase hari
+print("Persentase hari adalah, ")
+print(df["day"].value_counts(normalize=True))
+
+# frekuensi negara
+print("Tabel frekuensi negara yang terkena gempa bumi adalah, ")
+print(df["region"].value_counts())
+
+
+# persentase negara
+print("Persentase negara yang terkena gempa bumi adalah, ")
+print(df["region"].value_counts(normalize=True))
+
+
+# frekuensi wilayah
+print("Tabel frekuensi wilayah yang terkena gempa bumi adalah, ")
+print(df["area"].value_counts())
+
+# persentase wilayah
+print("Persentase wilayah yang terkena gempa bumi adalah, ")
+print(df["area"].value_counts(normalize=True))
+
+# frekuensi kematian
+print("tabel frekuensi kematian adalah, ")
+print(df["deaths"].value_counts())
+
+
+# persentase kematian
+print("Persentase kematian adalah, ")
+print(df["deaths"].value_counts(normalize=True))
+
+
 print("Nilai korelasi antara nilai skala richter dan jumlah kematian adalah " + str(df["richter"].corr(df["deaths"])))
 # nilai korelasi antara skala richter dan jumlah kematian mendekati 0 yang artinya tidak berhubungan atau
 # berhubungan tetapi kecil sekali
