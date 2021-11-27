@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import os
 df = pd.read_csv("earthquakes.csv")
 
@@ -127,3 +128,10 @@ print(df["deaths"].value_counts(normalize=True))
 print("Nilai korelasi antara nilai skala richter dan jumlah kematian adalah " + str(df["richter"].corr(df["deaths"])))
 # nilai korelasi antara skala richter dan jumlah kematian mendekati 0 yang artinya tidak berhubungan atau
 # berhubungan tetapi kecil sekali
+
+# visualisasi data
+# bar chart kekuatan gempa bumi dan jumlah kematian yang terjadi
+df.plot(kind = "bar", x = "richter", y = "deaths", title = "Hubungan antara kekuatan gempa bumi dan jumlah kematian yang terjadi")
+plt.show
+
+
