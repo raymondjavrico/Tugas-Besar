@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import os
 df = pd.read_csv("earthquakes.csv")
 
@@ -127,3 +128,18 @@ print(df["deaths"].value_counts(normalize=True))
 print("Nilai korelasi antara nilai skala richter dan jumlah kematian adalah " + str(df["richter"].corr(df["deaths"])))
 # nilai korelasi antara skala richter dan jumlah kematian mendekati 0 yang artinya tidak berhubungan atau
 # berhubungan tetapi kecil sekali
+
+# visualisasi data
+# pie chart "region"
+df1 = df["region"].value_counts()
+df1.plot(kind = "pie")
+plt.show() # menampilkan pie chart yang menunjukkan region yang sering mengalami gempa bumi
+
+# pie chart "month"
+df2 = df["month"].value_counts()
+df2.plot(kind = "pie")
+plt.show() # menampilkan pie chart yang menunjukkan bulan yang sering terlanda gempa bumi
+
+# scatter plot "richter" dan "deaths"
+df.plot(kind = "scatter", x = "richter", y = "deaths")
+plt.show()
