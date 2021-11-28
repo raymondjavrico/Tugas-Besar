@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import numpy as np
 df = pd.read_csv("earthquakes.csv")
 
 print("Jumlah baris pada tabel data adalah, ", end="")
@@ -125,11 +126,34 @@ print("Persentase kematian adalah, ")
 print(df["deaths"].value_counts(normalize=True))
 
 
+# sorting skala richter
+urutan_skala_richter = df.sort_values(['richter'], ascending=[1])
+print(urutan_skala_richter)
+
+
+# persentil ke-50 dari skala richter
+data_terurut_skala_richter = np.array(urutan_skala_richter)
+persentil_skala_richter = np.percentile(data_terurut_skala_richter, 50) # memproses persentil ke-50 dari skala richter
+print('Persentil ke-50 dari skala richter adalah', persentil_skala_richter)
+
+
+# sorting kematian
+urutan_kematian = df.sort_values(['deaths'], ascending=[1])
+print(urutan_kematian)
+
+
+# persentil ke-25 dari kematian
+data_terurut_kematian = np.array(urutan_kematian)
+persentil_kematian = np.percentile(data_terurut_kematian, 25) # memproses persentil ke-25 dari kematian
+print('Persentil ke-25 dari kematian adalah', persentil_kematian)
+
+
 print("Nilai korelasi antara nilai skala richter dan jumlah kematian adalah " + str(df["richter"].corr(df["deaths"])))
 # nilai korelasi antara skala richter dan jumlah kematian mendekati 0 yang artinya tidak berhubungan atau
 # berhubungan tetapi kecil sekali
 
-# visualisasi data
+
+# visualisasi data gempa bumi
 # pie chart "region"
 df1 = df["region"].value_counts()
 df1.plot(kind = "pie")
@@ -142,4 +166,16 @@ plt.show() # menampilkan pie chart yang menunjukkan bulan yang sering terlanda g
 
 # scatter plot "richter" dan "deaths"
 df.plot(kind = "scatter", x = "richter", y = "deaths")
-plt.show()
+plt.show() # menampilkan hubungan korelasi antara kekuatan gempa bumi dan jumlah kematiannya
+
+# line chart "year1" dan "richter1"
+df.plot(kind = "line", x = "year1", y = "richter1")
+plt.show() # menampilkan kekuatan gempa bumi tiap tahunnya
+
+# line chart "year1" dan "deaths1"
+df.plot(kind = "line", x = "year1", y = "deaths1")
+plt.show() # menampilkan jumlah kematian akibat gempa bumi tiap tahunnya
+
+# area chart "year1" dan "deaths1"
+df.plot(kind = "area", x = "year1", y = "deaths1")
+plt.show() # menampilkan peningkatan atau penurunan jumlah kematian dari suatu tahun ke tahun lainnya
